@@ -1,0 +1,334 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #5b3cf5;
+  --primary-light: #7c5ff5;
+  --primary-dark: #4527d4;
+  --accent-blue: #4f8ef7;
+  --bg-gradient: linear-gradient(135deg, #dde8ff 0%, #e8deff 30%, #f0e6ff 60%, #d8eaff 100%);
+  --bg-section: linear-gradient(135deg, #e4edff 0%, #ede4ff 50%, #ddeeff 100%);
+  --white: #ffffff;
+  --card-bg: rgba(255,255,255,0.65);
+  --card-border: rgba(255,255,255,0.9);
+  --card-shadow: 0 8px 32px rgba(91,60,245,0.10);
+  --text-dark: #1a1340;
+  --text-medium: #4a4580;
+  --text-light: #8b87b8;
+  --text-primary: #5b3cf5;
+  --nav-bg: rgba(255,255,255,0.75);
+  --nav-border: rgba(255,255,255,0.9);
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark {
+  --bg-gradient: linear-gradient(135deg, #0f0f1a, #1a1a2e, #16213e);
+  --bg-section: linear-gradient(135deg, #141e30, #243b55);
+
+  --white: #020617;
+
+  --card-bg: rgba(30, 30, 60, 0.5);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 8px 32px rgba(0,0,0,0.6);
+
+  --text-dark: #f1f5f9;     /* 👈 MAIN FIX */
+  --text-medium: #cbd5e1;   /* 👈 IMPORTANT */
+  --text-light: #94a3b8;
+
+  --text-primary: #818cf8;  /* 👈 accent */
+
+  --nav-bg: rgba(2, 6, 23, 0.7);
+  --nav-border: rgba(255, 255, 255, 0.1);
+}
+body.dark .btn-outline {
+  background: rgba(255,255,255,0.05);
+  color: #f1f5f9;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+body.dark h1,
+body.dark h2,
+body.dark h3 {
+  color: #f8fafc;
+}
+
+body.dark p {
+  color: #cbd5e1;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 500px at 10% 10%, rgba(147, 112, 255, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 500px at 90% 80%, rgba(100, 160, 255, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 50% 50%, rgba(200, 180, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #e8deff; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+/* ── FLOATING ORBS ── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 6s ease-in-out infinite;
+}
+.orb-1 {
+  width: 80px; height: 80px;
+  background: radial-gradient(circle at 35% 35%, #a78bfa, #7c3aed);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
+  top: 15%; left: 3%;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 55px; height: 55px;
+  background: radial-gradient(circle at 35% 35%, #c4b5fd, #8b5cf6);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+  top: 60%; left: 2%;
+  animation-delay: 2s;
+}
+.orb-3 {
+  width: 70px; height: 70px;
+  background: radial-gradient(circle at 35% 35%, #93c5fd, #60a5fa);
+  box-shadow: 0 8px 24px rgba(96, 165, 250, 0.35);
+  top: 25%; right: 4%;
+  animation-delay: 1s;
+}
+.orb-4 {
+  width: 45px; height: 45px;
+  background: radial-gradient(circle at 35% 35%, #ddd6fe, #a78bfa);
+  box-shadow: 0 6px 16px rgba(167, 139, 250, 0.3);
+  top: 75%; right: 3%;
+  animation-delay: 3s;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+
+/* ── SECTION COMMON ── */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 90px 0;
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── BADGE ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(91,60,245,0.1);
+}
+
+/* ── SECTION TITLE ── */
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(38px, 5vw, 58px);
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.section-title span {
+  color: var(--primary);
+  background: linear-gradient(135deg, #5b3cf5, #7b61ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-underline {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #5b3cf5, #9f7aea);
+  border-radius: 3px;
+  margin: 12px auto 0;
+}
+.section-subtitle {
+  color: var(--text-medium);
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+/* ── GLASS CARD ── */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+body.dark .glass-card {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(91,60,245,0.15);
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #5b3cf5, #7b61ff);
+  color: white;
+  box-shadow: 0 6px 24px rgba(91,60,245,0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(91,60,245,0.55);
+}
+.btn-outline {
+  background: rgba(255,255,255,0.8);
+  color: var(--text-dark);
+  border: 1.5px solid rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.btn-outline:hover {
+  background: white;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+.btn-white {
+  background: white;
+  color: var(--primary);
+  border: 1.5px solid rgba(91,60,245,0.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.btn-white:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ── FADE IN ANIMATION ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── SPINNER ── */
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── DOTS PATTERN ── */
+.dots-pattern {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(circle, rgba(91,60,245,0.2) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  section { padding: 70px 0; }
+}
+@media (max-width: 768px) {
+  section { padding: 60px 0; }
+  .container { padding: 0 20px; }
+  .section-title { font-size: 32px; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .section-title { font-size: 28px; }
+}
+
+/* Projects carousel - reduce side padding on small screens to keep center card properly positioned */
+.projects-carousel { padding: 0 50px; }
+@media (max-width: 768px) {
+  .projects-carousel { padding: 0 16px !important; }
+  .projects-carousel > div { padding: 0 !important; }
+}
