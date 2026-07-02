@@ -7,11 +7,13 @@ const projects = [
     num: '01',
     title: 'Enterprise Employee Management System',
     desc: 'Enterprise-grade Employee Management System with JWT Authentication,Role-based access control,analytics and cloud deployement',
-    stack: ['React','Java','SpringBoot','MySql','Spring Security(JWT)'],
-    demo: 'https://employee-management-systemz.netlify.app',
-    github: 'https://github.com/Ajithkumar1204/Employee-Management-System',
+    
     type: 'project',
-    emoji: '🚀',
+	preview: {
+      stack: ['React','Java','SpringBoot','MySql','Spring Security(JWT)'],
+      demo: 'https://employee-management-systemz.netlify.app',
+      github: 'https://github.com/Ajithkumar1204/Employee-Management-System',
+    },
   },
   {
     id: 2,
