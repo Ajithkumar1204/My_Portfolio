@@ -5,12 +5,12 @@ const projects = [
   {
     id: 1,
     num: '01',
-    title: 'Project Coming Soon 🚀',
-    desc: 'Building something amazing...',
-    stack: [],
-    demo: '#',
-    github: '#',
-    type: 'coming-soon',
+    title: 'Enterprise Employee Management System',
+    desc: 'Enterprise-grade Employee Management System with JWT Authentication,Role-based access control,analytics and cloud deployement',
+    stack: ['React','Java','SpringBoot','MySql','Spring Security(JWT)'],
+    demo: 'https://employee-management-systemz.netlify.app',
+    github: 'https://github.com/Ajithkumar1204/Employee-Management-System',
+    type: 'project',
     emoji: '🚀',
   },
   {
